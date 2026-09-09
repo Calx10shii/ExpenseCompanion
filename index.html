@@ -1,13 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">   
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ledger — Personal Budget Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
+  <header class="app-header">
+    <div class="app-header__inner">
+      <h1 class="app-title">Ledger</h1>
+      <p class="app-tagline">Track what comes in, and where it goes.</p>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <!-- SUMMARY DASHBOARD -->
+    <section class="dashboard" aria-labelledby="dashboard-heading">
+      <h2 id="dashboard-heading" class="visually-hidden">Budget summary</h2>
+
+      <div class="dashboard__grid">
+
+        <div class="stat-card stat-card--budget" id="budget-card">
+          <p class="stat-card__label">Total Budget</p>
+          <p class="stat-card__value" id="total-budget">$0.00</p>
+
+          <form class="budget-form" id="budget-form">
+            <label for="budget-input" class="visually-hidden">Set total budget</label>
+            <input
+              type="number"
+              id="budget-input"
+              class="budget-form__input"
+              min="0"
+              step="0.01"
+              placeholder="Set budget"
+            >
+            <button type="submit" id="set-budget-btn" class="budget-form__btn">Set</button>
+          </form>
+        </div>
+
+        <div class="stat-card stat-card--expenses" id="expenses-card">
+          <p class="stat-card__label">Total Expenses</p>
+          <p class="stat-card__value" id="total-expenses">$0.00</p>
+        </div>
+
+        <div class="stat-card stat-card--balance" id="balance-card">
+          <p class="stat-card__label">Remaining Balance</p>
+          <p class="stat-card__value" id="remaining-balance">$0.00</p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="content-grid">
+
+      <!-- ADD EXPENSE FORM -->
+      <section class="panel panel--form" aria-labelledby="add-expense-heading">
+        <h2 id="add-expense-heading" class="panel__heading">Add Expense</h2>
+
+        <form id="expense-form" class="expense-form" novalidate>
+
+          <div class="form-field">
+            <label for="expense-name">Expense name</label>
+            <input
+              type="text"
+              id="expense-name"
+              name="expense-name"
+              class="form-input"
+              placeholder="e.g. Groceries"
+              required
+            >
+          </div>
+
+          <div class="form-field">
+            <label for="expense-amount">Amount</label>
+            <input
+              type="number"
+              id="expense-amount"
+              name="expense-amount"
+              class="form-input"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              required
+            >
+          </div>
+
+          <div class="form-field">
+            <label for="expense-category">Category</label>
+            <select id="expense-category" name="expense-category" class="form-select" required>
+              <option value="" disabled selected>Choose a category</option>
+              <option value="food">Food</option>
+              <option value="transportation">Transportation</option>
+              <option value="housing">Housing</option>
+              <option value="utilities">Utilities</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="health">Health</option>
+              <option value="shopping">Shopping</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn btn--primary">Add Expense</button>
+
+        </form>
+      </section>
+
+      <!-- EXPENSE LIST -->
+      <section class="panel panel--list" aria-labelledby="expense-list-heading">
+        <div class="panel__header-row">
+          <h2 id="expense-list-heading" class="panel__heading">Expenses</h2>
+          <button type="button" id="clear-expenses-btn" class="btn btn--ghost">Clear all</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="expense-table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Amount</th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="expense-list">
+              <!--
+                JS INSERTS ROWS HERE. Suggested shape for reference only:
+
+                <tr class="expense-row" data-id="...">
+                  <td class="expense-row__name">Groceries</td>
+                  <td class="expense-row__category">
+                    <span class="category-tag category-tag--food">Food</span>
+                  </td>
+                  <td class="expense-row__amount">$45.00</td>
+                  <td class="expense-row__actions">
+                    <button type="button" class="btn btn--icon delete-btn" aria-label="Delete expense">✕</button>
+                  </td>
+                </tr>
+              -->
+            </tbody>
+          </table>
+
+          <p id="empty-state" class="empty-state">No expenses yet. Add your first one on the left.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>Your personal expense tracker.</p>
+  </footer>
+
 </body>
 </html>
