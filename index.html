@@ -10,8 +10,21 @@
 
   <header class="app-header">
     <div class="app-header__inner">
-      <h1 class="app-title">Ledger</h1>
-      <p class="app-tagline">Track what comes in, and where it goes.</p>
+      <div class="app-header__text">
+        <h1 class="app-title">ExpenseCompanion</h1>
+        <p class="app-tagline">Track what comes in, and where it goes.</p>
+      </div>
+
+      <button
+        type="button"
+        class="theme-toggle"
+        id="theme-toggle"
+        aria-label="Toggle dark mode"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+        <span class="theme-toggle__label">Dark mode</span>
+      </button>
     </div>
   </header>
 
@@ -154,5 +167,6 @@
     <p>Your personal expense tracker.</p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
